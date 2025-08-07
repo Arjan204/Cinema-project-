@@ -57,6 +57,48 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
+    .details-box {
+  display: flex;
+  gap: 10px;
+  background-color: #1b2735;
+  border: 1px solid #2c3e50;
+  border-radius: 10px;
+  padding: 20px;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  flex-wrap: wrap;
+}
+
+.detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #fff;
+  min-width: 180px;
+}
+
+.detail-item .icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.detail-item .label {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin-bottom: 3px;
+}
+
+.detail-item .value {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.detail-item small {
+  font-size: 0.75rem;
+  color: #aaa;
+}
+
+
     .top-section {
       display: flex;
       flex-wrap: wrap;
@@ -207,7 +249,7 @@
 <body>
      <!-- Top Navbar -->
 <nav class="navbar navbar-expand-lg px-5">
-  <a class="navbar-brand" href="#">🐈 CATFICTION</a>
+  <a class="navbar-brand" href="index.html">🐈 CATFICTION</a>
   <div class="ms-auto d-flex gap-2">
     <a href="signup.html" class="nav-btn">LOGIN</a>
     <a href="#" class="nav-btn">SIGN UP</a>
@@ -233,6 +275,31 @@
         <p>Time: <span>7:30 PM</span></p>
         <p>Theater: <span>Catfiction Cineplex — Screen 2 (Dolby Atmos)</span></p>
       </div>
+      <div class="details-box">
+  <div class="detail-item">
+    <span class="icon">📅</span>
+    <div>
+      <div class="label">Date</div>
+      <div class="value">Today, Dec 15</div>
+    </div>
+  </div>
+  <div class="detail-item">
+    <span class="icon">⏰</span>
+    <div>
+      <div class="label">Time</div>
+      <div class="value">7:30 PM</div>
+    </div>
+  </div>
+  <div class="detail-item">
+    <span class="icon">📍</span>
+    <div>
+      <div class="label">Theater</div>
+      <div class="value">Catfiction Cineplex</div>
+      <small>Screen 2 (Dolby Atmos)</small>
+    </div>
+  </div>
+</div>
+
     </div>
   </div>
 
