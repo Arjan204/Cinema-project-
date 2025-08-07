@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Catfiction Slider</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f172a;
+      color: #f1f5f9;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #1e293b;
+    }
+
+    .navbar-brand,
+    .navbar a {
+      color: #f1f5f9;
+      font-weight: bold;
+    }
+
+    .navbar a:hover {
+      color: #38bdf8;
+    }
+
+    .nav-btn {
+  background-color: #0d1b2a;
+  color: #0d1b2a;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 2px solid #0d1b2a;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-btn:hover {
+  background-color: #f6f7f8;
+  color: #ffffff;
+}
+
+    
+
+    /* Carousel */
+    .carousel-item {
+      height: 500px;
+      background: no-repeat center center scroll;
+      background-size: cover;
+      position: relative;
+    }
+
+    .carousel-caption {
+      bottom: 150px;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .carousel-caption h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #38bdf8;
+    }
+
+    .carousel-caption p {
+      color: #f1f5f9;
+    }
+
+    .btn-custom {
+      border-radius: 30px;
+      font-weight: bold;
+      padding: 10px 20px;
+    }
+
+    .btn-light.btn-custom {
+      background-color: #0ea5e9;
+      color: #fff;
+      border: none;
+      box-shadow: 0 0 10px #0ea5e9;
+    }
+
+    .btn-outline-light.btn-custom {
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+
+    .btn-outline-light.btn-custom:hover {
+      background-color: #38bdf8;
+      color: #0f172a;
+    }
+
+    /* Custom trailer button for carousel */
+    .custom-trailer-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 30px;
+      font-weight: bold;
+      padding: 10px 20px;
+      background-color: #0ea5e9;
+      color: white;
+      border: none;
+      box-shadow: 0 0 10px #0ea5e9;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .custom-trailer-btn:hover {
+      background-color: #0b87c9;
+      box-shadow: 0 0 15px #d5dcdf;
+      color: white;
+    }
+
+    /* Custom watch button for movie cards */
+    .custom-watch-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      padding: 8px 16px;
+      background-color: #fcfcfc;
+      color: rgb(12, 12, 12);
+      border: 2px solid black;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      cursor: pointer;
+    }
+    .custom-watch-btn:hover {
+      background-color: #38bdf8;
+      color: #0f172a;
+    }
+
+
+    /* Movies section and cards */
+    .movies-section {
+      margin: 80px 0;
+      text-align: center;
+    }
+
+    .movies-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 0 15px;
+    }
+
+    .movie-card {
+      background-color: #fff;
+      border-radius: 10px;
+      width: 280px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .movie-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .movie-image {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+    }
+
+    .movie-content {
+      padding: 16px;
+      color: #111;
+    }
+
+    .movie-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      font-family: monospace;
+      margin-bottom: 8px;
+      color: #0f172a;
+    }
+
+    .movie-desc {
+      font-size: 0.88rem;
+      margin-bottom: 6px;
+      color: #333;
+    }
+
+    .movie-meta {
+      font-size: 0.78rem;
+      color: #555;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+ <!-- Top Navbar -->
+<nav class="navbar navbar-expand-lg px-5">
+  <a class="navbar-brand" href="#">🐈 CATFICTION</a>
+  <div class="ms-auto d-flex gap-2">
+    <a href="signup.html" class="nav-btn">LOGIN</a>
+    <a href="#" class="nav-btn">SIGN UP</a>
+  </div>
+</nav>
+
+
+  <!-- Carousel Slider -->
+  <header>
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+    
+
+      <div class="carousel-inner">
+        <div class="carousel-item active" style="background-image: url('https://images.fastcompany.com/image/upload/f_webp,c_fit,w_1920,q_auto/wp-cms/uploads/2017/07/p-1-stranger-things-2-poster-and-the-references.jpg')">
+          <div class="carousel-caption text-start">
+            <h1>STRANGER THINGS</h1>
+            <p>A nostalgic 80s sci-fi thriller packed with mystery and monsters.</p>
+            <a href="#" class="custom-trailer-btn me-2"><i class="fa-solid fa-play"></i> WATCH TRAILER</a>
+            <a href="#" class="btn btn-outline-light btn-custom"><i class="fa-solid"></i> BUY TICKETS</a>
+          </div>
+        </div>
+
+        <div class="carousel-item" style="background-image: url('https://preview.redd.it/8yonn7m4bfk31.jpg?auto=webp&s=da29b8129e42a65cc3fe3294d1e3658a98d8e25c')">
+          <div class="carousel-caption text-start">
+            <h1>AVENGERS: ENDGAME</h1>
+            <p>The epic finale to the Marvel saga. Heroes unite one last time.</p>
+            <a href="#" class="custom-trailer-btn me-2"><i class="fa-solid fa-play"></i> WATCH TRAILER</a>
+            <a href="#" class="btn btn-outline-light btn-custom"><i class="fa-solid"></i> BUY TICKETS</a>
+          </div>
+        </div>
+
+        <div class="carousel-item" style="background-image: url('https://images7.alphacoders.com/132/thumb-1920-1324265.jpeg')">
+          <div class="carousel-caption text-start">
+            <h1>AVATAR</h1>
+            <p>A visually stunning journey into the world of Pandora.</p>
+            <a href="#" class="custom-trailer-btn me-2"><i class="fa-solid fa-play"></i> WATCH TRAILER</a>
+            <a href="#" class="btn btn-outline-light btn-custom"><i class="fa-solid"></i> BUY TICKETS</a>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </header>
+<section class="movies-section">
+  <div class="movies-container">
+
+    <!-- Movie Card 1 -->
+    <div class="movie-card">
+      <img src="https://th.bing.com/th/id/R.b2202c81c7565686520698526f42c79e?rik=AL94DMciTOkRxQ&pid=ImgRaw&r=0" alt="Peaky Blinders" class="movie-image" />
+      <div class="movie-content">
+        <h5 class="movie-title">PEAKY BLINDERS</h5>
+        <p class="movie-desc">A notorious gang in 1919 Birmingham, England, is led by Tommy Shelby.</p>
+        <p class="movie-meta">Starring: Cillian Murphy<br>Creators: Steven Knight</p>
+        <div class="d-flex gap-2">
+          <a href="#" class="custom-watch-btn"><i class="fa-solid fa-play"></i> WATCH TRAILER</a>
+          <a href="#" class="custom-watch-btn"><i class="fa-solid fa-ticket"></i> BUY</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Movie Card 2 -->
+    <div class="movie-card">
+      <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/6b958279978371.5cd387b3cbaea.jpg" alt="Avengers Endgame" class="movie-image" />
+      <div class="movie-content">
+        <h5 class="movie-title">AVENGERS ENDGAME</h5>
+        <p class="movie-desc">The Avengers face their final battle against Thanos.</p>
+        <p class="movie-meta">Starring: Chris Evans, Robert Downey Jr.<br>Creators: Kevin Feige</p>
+        <div class="d-flex gap-2">
+          <a href="#" class="custom-watch-btn"><i class="fa-solid fa-play"></i> WATCH TRAILER</a>
+          <a href="#" class="custom-watch-btn"><i class="fa-solid fa-ticket"></i> BUY</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Movie Card 3 -->
+    <div class="movie-card">
+      <img src="https://th.bing.com/th/id/R.9e51003f063386abfd9c29e907eb2200?rik=Z4jjlSmzeEey0A&riu=http%3a%2f%2fth05.deviantart.net%2ffs71%2fPRE%2ff%2f2010%2f192%2fb%2fe%2fAvatar_Special_Edition_Poster_by_J_K_K_S.jpg&ehk=kzVkc8Lo1g82%2bzUaecOrWCxWRUnR4g0rAWhhTl1DQ4M%3d&risl=&pid=ImgRaw&r=0" alt="Avatar" class="movie-image" />
+      <div class="movie-content">
+        <h5 class="movie-title">AVATAR</h5>
+        <p class="movie-desc">Explore the world of Pandora in a visual masterpiece.</p>
+        <p class="movie-meta">Starring: Sam Worthington<br>Creators: James Cameron</p>
+        <div class="d-flex gap-2">
+          <a href="#" class="custom-watch-btn"><i class="fa-solid fa-play"></i> WATCH TRAILER</a>
+          <a href="#" class="custom-watch-btn"><i class="fa-solid fa-ticket"></i> BUY</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Movie Card 4 -->
+    <div class="movie-card">
+      <img src="https://th.bing.com/th/id/R.1a2d3fb3ba43d2a28865f751f28c9dc2?rik=eNrq5aMVJ76aQQ&riu=http%3a%2f%2fwww.scified.com%2fu%2fsecond-official-alien--romulus-poster-55722.jpg&ehk=UUanXdb4oFU%2bCslKr8hwf9Cuy47ipao5IDGyFo1INgg%3d&risl=&pid=ImgRaw&r=0" alt="Alien" class="movie-image" />
+      <div class="movie-content">
+        <h5 class="movie-title">ALIEN</h5>
+        <p class="movie-desc">In space, no one can hear you scream. A sci-fi horror classic.</p>
+        <p class="movie-meta">Starring: Sigourney Weaver<br>Creators: Ridley Scott</p>
+        <div class="d-flex gap-2">
+          <a href="#" class="custom-watch-btn"><i class="fa-solid fa-play"></i> WATCH TRAILER</a>
+          <a href="#" class="custom-watch-btn"><i class="fa-solid fa-ticket"></i> BUY</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
